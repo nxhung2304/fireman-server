@@ -1,3 +1,6 @@
+require "open-uri"
+require "nokogiri"
+
 module Datasource
   module Gold
     class Sjc
@@ -31,8 +34,7 @@ module Datasource
             buy_today: buy_today,
             sell_today: sell_today,
             buy_yesterday: buy_yesterday,
-            sell_yesterday: sell_yesterday,
-            change: (buy_today == buy_yesterday && sell_today == sell_yesterday) ? "Không đổi" : "Thay đổi"
+            sell_yesterday: sell_yesterday
           }
         end
 
@@ -52,10 +54,8 @@ module Datasource
             blocks << {
               type: "section",
               fields: [
-                { type: "mrkdwn", text: "*#{rate[:provider]}*" },
                 { type: "mrkdwn", text: "Mua: `#{rate[:buy_today]}`" },
-                { type: "mrkdwn", text: "Bán: `#{rate[:sell_today]}`" },
-                { type: "mrkdwn", text: "Thay đổi: `#{rate[:change]}`" }
+                { type: "mrkdwn", text: "Bán: `#{rate[:sell_today]}`" }
               ]
             }
           end

@@ -9,9 +9,11 @@ module Fireman
     end
 
     def call
-      blocks = Datasource::Gold::Sjc.new.call
+      sjc_blocks = Datasource::Gold::Sjc.new.call
+      world_blocks = Datasource::Gold::World.new.call
 
-      @slack_bot.send_blocks(blocks)
+      @slack_bot.send_blocks(world_blocks)
+      @slack_bot.send_blocks(sjc_blocks)
     end
   end
 end
