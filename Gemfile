@@ -39,7 +39,8 @@ gem "thruster", require: false
 
 gem "slack-ruby-client"
 gem "nokogiri"
-gem 'faraday'
+gem "faraday"
+gem "hugging-face"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

@@ -27,7 +27,14 @@ module Datasource
         response = conn.get(ENDPOINT, params)
 
         puts "Status: #{response.status}"
-        puts "Body: #{parse_json(response.body)}"
+
+        if response.success?
+          parsed_body = parse_json(response.body)
+          { data: parsed_body, success: true }
+        else
+          puts "API Error: #{response.status} - #{response.body}"
+          { error: "API request failed with status #{response.status}", success: false }
+        end
       end
 
       private
