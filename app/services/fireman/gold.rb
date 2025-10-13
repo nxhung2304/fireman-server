@@ -1,19 +1,25 @@
 require "slack-ruby-client"
 
 module Fireman
+  # Legacy Gold class - use ServiceContainer.gold_service instead
+  # This class is kept for backward compatibility
   class Gold
     SLACK_CHANNEL = "#fireman-gold".freeze
 
     def initialize
       @slack_bot = SlackBot.new(SLACK_CHANNEL)
+      puts "[DEPRECATED] Fireman::Gold is deprecated. Use Services.notify_gold_prices instead."
     end
 
     def call
-      sjc_blocks = Datasource::Price::Gold::Sjc.new.call
-      world_blocks = Datasource::Price::Gold::World.new.call
+      # Use the new service architecture
+      result = Services.notify_gold_prices
 
-      @slack_bot.send_blocks(world_blocks)
-      @slack_bot.send_blocks(sjc_blocks)
+      if result[:success]
+        "Gold prices successfully processed and delivered"
+      else
+        "Failed to process gold prices: #{result[:error]}"
+      end
     end
   end
 end

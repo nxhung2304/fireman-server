@@ -4,6 +4,10 @@
 
 This document outlines a comprehensive refactoring plan to transform the current services architecture into a scalable, maintainable, and testable system following SOLID principles.
 
+## Rules
+- All code files will be in app/services
+- Easy maintainable and easy to understand code
+
 ## Current Issues Analysis
 
 ### SOLID Violations
