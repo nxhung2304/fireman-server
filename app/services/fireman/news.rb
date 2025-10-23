@@ -6,8 +6,9 @@ module Fireman
       @slack_bot = SlackBot.new(SLACK_CHANNEL)
     end
 
-    def send_news
-      msg = "News: BTC ATH"
+    def call
+      q = "Gold price"
+      msg = Datasource::News::NewsApi.new.call(q)
       @slack_bot.send_message(msg)
     end
   end

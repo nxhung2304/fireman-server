@@ -56,7 +56,7 @@ module Datasource
               blocks << {
                 type: "section",
                 fields: [
-                  { type: "mrkdwn", text: "*Spot Price*" },
+                  { type: "mrkdwn", text: "Price:" },
                   { type: "mrkdwn", text: "`#{item[:spot_price]}`" }
                 ]
               }
